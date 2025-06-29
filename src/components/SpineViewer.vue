@@ -377,9 +377,7 @@ function exportAnimation(transparent: boolean): Promise<void> {
       )
       cam.update()
     }
-    const supportedMp4 = MediaRecorder.isTypeSupported('video/mp4')
-    const mimeType = supportedMp4 ? 'video/mp4' : 'video/webm'
-    const extension = supportedMp4 ? 'mp4' : 'webm'
+    const mimeType = 'video/webm'
     const stream = canvas.captureStream(fps)
     recorder = new MediaRecorder(stream, {
       mimeType,
@@ -399,7 +397,7 @@ function exportAnimation(transparent: boolean): Promise<void> {
         const url = URL.createObjectURL(blob)
         const a = document.createElement('a')
         a.href = url
-        a.download = `animation_${store.selectedCharacterId}_${animationName}.${extension}`
+        a.download = `animation_${store.selectedCharacterId}_${animationName}.webm`
         a.click()
         URL.revokeObjectURL(url)
       }
