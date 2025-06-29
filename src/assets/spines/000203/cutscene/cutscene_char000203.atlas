@@ -1,4 +1,4 @@
-CutScene_Char000203.png
+cutscene_char000203.png
 size:2048,2048
 filter:Linear,Linear
 A_OPEN_face_sweat
@@ -114,7 +114,7 @@ rotate:90
 twinkle
 bounds:1853,1643,190,199
 
-CutScene_Char000203_2.png
+cutscene_char000203_2.png
 size:2048,2048
 filter:Linear,Linear
 A_OPEN_face_open
@@ -253,7 +253,7 @@ bounds:1326,22,345,354
 glass_5
 bounds:1263,1537,187,505
 
-CutScene_Char000203_3.png
+cutscene_char000203_3.png
 size:2048,2048
 filter:Linear,Linear
 A_upper_body

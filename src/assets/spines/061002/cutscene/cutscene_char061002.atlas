@@ -1,4 +1,4 @@
-cutscene_Char061002.png
+cutscene_char061002.png
 size:2048,2048
 filter:Linear,Linear
 A_arm_L4
@@ -200,7 +200,7 @@ bounds:981,1714,332,135
 offsets:0,0,332,137
 rotate:90
 
-cutscene_Char061002_2.png
+cutscene_char061002_2.png
 size:2048,2048
 filter:Linear,Linear
 A_Waist_1
@@ -477,7 +477,7 @@ C_skirt5
 bounds:1739,661,313,256
 rotate:90
 
-cutscene_Char061002_3.png
+cutscene_char061002_3.png
 size:2048,2048
 filter:Linear,Linear
 A_chest1
@@ -536,7 +536,7 @@ rotate:90
 C_leg_r
 bounds:2,247,380,354
 
-cutscene_Char061002_4.png
+cutscene_char061002_4.png
 size:2048,2048
 filter:Linear,Linear
 A_hair7

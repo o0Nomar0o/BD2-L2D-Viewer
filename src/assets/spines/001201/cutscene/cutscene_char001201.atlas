@@ -1,4 +1,4 @@
-CutScene_Char001201.png
+cutscene_char001201.png
 size:2048,2048
 filter:Linear,Linear
 A_arrow_1
@@ -117,7 +117,7 @@ bounds:2,1824,31,23
 root
 bounds:2,2040,4,4
 
-CutScene_Char001201_2.png
+cutscene_char001201_2.png
 size:2048,2048
 filter:Linear,Linear
 A_bow_3
@@ -193,7 +193,7 @@ hair_11
 bounds:1641,1200,342,846
 rotate:180
 
-CutScene_Char001201_3.png
+cutscene_char001201_3.png
 size:2048,2048
 filter:Linear,Linear
 A_arrow_2
@@ -210,7 +210,7 @@ bounds:1160,220,272,1826
 B_arrow_front_2
 bounds:1596,98,450,1936
 
-CutScene_Char001201_4.png
+cutscene_char001201_4.png
 size:2048,2048
 filter:Linear,Linear
 A_arrow_5
@@ -235,7 +235,7 @@ rotate:270
 B_underwear
 bounds:2,279,952,689
 
-CutScene_Char001201_5.png
+cutscene_char001201_5.png
 size:2048,2048
 filter:Linear,Linear
 A_bow_1

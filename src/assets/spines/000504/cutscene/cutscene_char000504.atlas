@@ -1,4 +1,4 @@
-CutScene_Char000504.png
+cutscene_char000504.png
 size:2048,2048
 filter:Linear,Linear
 arm(L)_1(1)
@@ -292,7 +292,7 @@ offsets:4,0,398,276
 upper body_3
 bounds:92,1702,108,62
 
-CutScene_Char000504_2.png
+cutscene_char000504_2.png
 size:2048,2048
 filter:Linear,Linear
 arm(L)_1(2)
