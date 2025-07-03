@@ -835,7 +835,7 @@ export default {
     "charName": "Zenith",
     "costumeName": "Poolside Guardian",
     "spine": "char061404",
-    "cutscene": "",
+    "cutscene": "cutscene_char061404",
     "dating": ""
   },
   "062001": {
