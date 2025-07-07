@@ -16,8 +16,7 @@
 <script setup lang="ts">
 import { ref, watch, onMounted } from 'vue'
 import { useCharacterStore } from '@/stores/characterStore'
-import { SpinePlayer, Vector2, CameraController, OrthoCamera } from '@esotericsoftware/spine-player'
-import { premultiplyImage } from '@/utils/premultiply';
+import { SpinePlayer, Vector2, CameraController, OrthoCamera, GLTexture } from '@esotericsoftware/spine-player'
 
 import type { Animation } from '@esotericsoftware/spine-player'
 import type { SpinePlayerInternal } from '@/types/spine-player-internal'
@@ -57,26 +56,6 @@ async function load() {
   offset = new Vector2()
   size = new Vector2()
 
-  let rawDataURIs: Record<string, string> | undefined
-  if (char.premultipliedAlpha) {
-    const atlasRes = await fetch(`${path}.atlas`)
-    if (atlasRes.ok) {
-      const atlasText = await atlasRes.text()
-      const dir = path.substring(0, path.lastIndexOf('/') + 1)
-      const textures = atlasText
-        .split(/\r?\n/)
-        .map(line => line.trim())
-        .filter(line => line.endsWith('.png'))
-      rawDataURIs = {}
-      await Promise.all(
-        textures.map(async tex => {
-          const texPath = `${dir}${tex}`
-          rawDataURIs![texPath] = await premultiplyImage(texPath)
-        })
-      )
-    }
-  }
-
   if (player) {
     player.dispose()
     container.value.innerHTML = ''
@@ -84,14 +63,20 @@ async function load() {
     manualCamera = null
   }
 
+  const originalUpdate = GLTexture.prototype.update;
+  GLTexture.prototype.update = function (useMipMaps: boolean) {
+    const gl = this.context.gl;
+    gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true)
+    originalUpdate.call(this, useMipMaps)
+  }
+
   player = new SpinePlayer(container.value, {
     showControls: false,
     binaryUrl: `${path}.skel`,
     atlasUrl: `${path}.atlas`,
-    rawDataURIs,
     backgroundColor: store.backgroundColor,
     preserveDrawingBuffer: true,
-    premultipliedAlpha: char.premultipliedAlpha,
+    premultipliedAlpha: true,
     alpha: true,
     viewport: {
       x: offset.x,

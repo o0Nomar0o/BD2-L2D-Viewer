@@ -67,8 +67,7 @@ export default {
     "costumeName": "B-Rank Idol",
     "spine": "char101102",
     "cutscene": "cutscene_char101102",
-    "dating": "",
-    "premultipliedAlpha": true
+    "dating": ""
   },
   "101103": {
     "charName": "Seir",
@@ -439,8 +438,7 @@ export default {
     "costumeName": "Angel of Destruction",
     "spine": "char001101",
     "cutscene": "cutscene_char001101",
-    "dating": "",
-    "premultipliedAlpha": true
+    "dating": ""
   },
   "001106": {
     "charName": "Teresse",
@@ -559,8 +557,7 @@ export default {
     "costumeName": "Daydream Bunny",
     "spine": "char003402",
     "cutscene": "cutscene_char003402",
-    "dating": "illust_dating2",
-    "premultipliedAlpha": true
+    "dating": "illust_dating2"
   },
   "003403": {
     "charName": "Morpeah",
@@ -721,16 +718,14 @@ export default {
     "costumeName": "Gentle Maid",
     "spine": "char060501",
     "cutscene": "cutscene_char060501",
-    "dating": "",
-    "premultipliedAlpha": true
+    "dating": ""
   },
   "060502": {
     "charName": "Anatasia",
     "costumeName": "Fire Graffiti",
     "spine": "char060502",
     "cutscene": "cutscene_char060502",
-    "dating": "",
-    "premultipliedAlpha": true
+    "dating": ""
   },
   "060601": {
     "charName": "Lecliss",
@@ -821,8 +816,7 @@ export default {
     "costumeName": "Summer Vacation",
     "spine": "char061305",
     "cutscene": "cutscene_char061305",
-    "dating": "",
-    "premultipliedAlpha": true
+    "dating": ""
   },
   "061402": {
     "charName": "Zenith",
@@ -1074,6 +1068,5 @@ export default {
   costumeName: string,
   spine: string,
   cutscene: string,
-  dating: string,
-  premultipliedAlpha?: boolean
+  dating: string
 } }

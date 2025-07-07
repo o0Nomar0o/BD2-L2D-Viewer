@@ -9,12 +9,10 @@ export interface Character {
   spine: string
   cutscene: string
   dating: string
-  premultipliedAlpha: boolean;
 }
 
 const characterArray: Character[] = Object.entries(character_list).map(([id, char]) => ({
   id,
-  premultipliedAlpha: false,
   ...char,
 }))
 
