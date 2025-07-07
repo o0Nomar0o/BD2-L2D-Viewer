@@ -92,8 +92,9 @@ import Navbar from '@/components/Navbar.vue'
 import CharacterSidebar from '@/components/CharacterSideBar.vue'
 import AnimationSidebar from '@/components/AnimationSideBar.vue'
 import SpineViewer from '@/components/SpineViewer.vue'
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
 import { useCharacterStore } from '@/stores/characterStore'
+import { buildUrl } from './utils/urlSync'
 
 import CameraResetIcon from '@/components/icons/CameraResetIcon.vue';
 import MenuIcon from '@/components/icons/MenuIcon.vue';
@@ -148,4 +149,9 @@ async function onExportAnimation(value: boolean) {
 function onCategoryChange() {
   showMobileControls.value = false;
 }
+
+watchEffect(() => {
+  const query = buildUrl(store)
+  history.replaceState(null, '', `${window.location.pathname}?${query}`)
+}, { flush: 'sync' })
 </script>
