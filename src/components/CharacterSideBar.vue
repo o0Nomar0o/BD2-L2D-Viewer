@@ -15,7 +15,7 @@
         @click="select(char.id)"
       >
         <img
-          :src="icons[char.id]"
+          :src="icons[char.id] || icons['unknown']"
           :alt="char.costumeName"
           class="w-16 h-16 object-cover rounded-[50%]"
         />

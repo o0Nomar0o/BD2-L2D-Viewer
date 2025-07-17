@@ -573,11 +573,39 @@ export default {
     "cutscene": "cutscene_char003501",
     "dating": ""
   },
+  "003601": {
+    "charName": "Olivier",
+    "costumeName": "White Witch",
+    "spine": "char003601",
+    "cutscene": "",
+    "dating": ""
+  },
+  "003602": {
+    "charName": "Kelian",
+    "costumeName": "Apostle",
+    "spine": "char003602",
+    "cutscene": "",
+    "dating": ""
+  },
+  "003603": {
+    "charName": "Olivier",
+    "costumeName": "Fallen Wings",
+    "spine": "char003603",
+    "cutscene": "cutscene_char003603",
+    "dating": ""
+  },
   "003701": {
     "charName": "Blade",
     "costumeName": "Apostle",
     "spine": "char003701",
     "cutscene": "cutscene_char003701",
+    "dating": ""
+  },
+  "003702": {
+    "charName": "Blade",
+    "costumeName": "Onsen Swordfighter",
+    "spine": "char003702",
+    "cutscene": "",
     "dating": ""
   },
   "003703": {
