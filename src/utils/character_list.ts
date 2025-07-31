@@ -263,7 +263,8 @@ export default {
     "costumeName": "Hot Summer Dream",
     "spine": "char000296",
     "cutscene": "cutscene_char000296",
-    "dating": "illust_dating7"
+    "dating": "illust_dating7",
+    "datingHasNoBg": false
   },
   "000301": {
     "charName": "Scheherazade",
@@ -581,10 +582,10 @@ export default {
     "dating": ""
   },
   "003602": {
-    "charName": "Kelian",
-    "costumeName": "Apostle",
+    "charName": "Olivier",
+    "costumeName": "Apostle (Kelian)",
     "spine": "char003602",
-    "cutscene": "",
+    "cutscene": "cutscene_char003602",
     "dating": ""
   },
   "003603": {
@@ -1096,5 +1097,6 @@ export default {
   costumeName: string,
   spine: string,
   cutscene: string,
-  dating: string
+  dating: string,
+  datingHasNoBg?: boolean
 } }

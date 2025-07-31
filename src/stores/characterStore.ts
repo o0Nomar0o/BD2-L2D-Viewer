@@ -9,10 +9,12 @@ export interface Character {
   spine: string
   cutscene: string
   dating: string
+  datingHasNoBg?: boolean
 }
 
 const characterArray: Character[] = Object.entries(character_list).map(([id, char]) => ({
   id,
+  datingHasNoBg: true,
   ...char,
 }))
 
@@ -26,6 +28,7 @@ export const useCharacterStore = defineStore('characterStore', {
     playing: true,
     animationSpeed: 1,
     backgroundColor: '#1f2937',
-    useCurrentCamera: false
+    useCurrentCamera: false,
+    showDatingBg: true,
   }),
 })

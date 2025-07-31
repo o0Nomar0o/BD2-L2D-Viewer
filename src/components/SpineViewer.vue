@@ -1,6 +1,13 @@
 <template>
   <div class="relative w-full h-full">
     <div ref="container" class="w-full h-full"></div>
+    <button
+      v-show="store.characters.find(c => c.id === store.selectedCharacterId)?.datingHasNoBg && store.animationCategory === 'dating'"
+      @click="store.showDatingBg = !store.showDatingBg"
+      class="absolute z-10 left-2 top-2 hidden md:block cursor-pointer"
+    >
+      <BgToggleIcon :active="store.showDatingBg" />
+    </button>
     <input
       type="range"
       min="0"
@@ -20,6 +27,8 @@ import { SpinePlayer, Vector2, CameraController, OrthoCamera, GLTexture } from '
 
 import type { Animation } from '@esotericsoftware/spine-player'
 import type { SpinePlayerInternal } from '@/types/spine-player-internal'
+
+import BgToggleIcon from '@/components/icons/BgToggleIcon.vue'
 
 const container = ref<HTMLDivElement | null>(null)
 const progress = ref(0)
@@ -48,7 +57,7 @@ async function load() {
   const ANIMATION_TYPE_BASE_PATH = {
     character: char.spine,
     ultimate: `cutscene/${char.cutscene}`,
-    dating: `dating/${char.dating}`
+    dating: !store.showDatingBg && char.datingHasNoBg ? `dating_nobg/${char.dating}` : `dating/${char.dating}`
   }
 
   const assetRoot = import.meta.env.DEV ? 'src/assets/spines' : 'assets/spines'
@@ -235,6 +244,13 @@ watch(() => store.backgroundColor, color => {
         : `#${color}`
     }
   }
+})
+watch(() => store.showDatingBg, () => {
+  if (recorder && recorder.state === 'recording') {
+    cancelExport = true
+    recorder.stop()
+  }
+  void load()
 })
 
 onMounted(() => {

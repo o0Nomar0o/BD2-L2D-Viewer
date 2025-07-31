@@ -47,6 +47,14 @@
             <option v-for="name in animations" :key="name" :value="name">{{ name }}</option>
           </select>
         </div>
+        <div class="absolute top-14 left-4 md:hidden z-10">
+          <button
+            v-show="!showMobileControls && store.characters.find(c => c.id === store.selectedCharacterId)?.datingHasNoBg && store.animationCategory === 'dating'"
+            @click="store.showDatingBg = !store.showDatingBg"
+          >
+            <BgToggleIcon :active="store.showDatingBg" />
+          </button>
+        </div>
         <SpineViewer ref="viewerRef" @animations="animations = $event" @skins="skins = $event" />
       </main>
       <div class="hidden md:flex flex-col min-h-0">
@@ -100,6 +108,7 @@ import CameraResetIcon from '@/components/icons/CameraResetIcon.vue';
 import MenuIcon from '@/components/icons/MenuIcon.vue';
 import PauseIcon from '@/components/icons/PauseIcon.vue';
 import PlayIcon from '@/components/icons/PlayIcon.vue';
+import BgToggleIcon from '@/components/icons/BgToggleIcon.vue';
 
 const store = useCharacterStore()
 
