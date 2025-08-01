@@ -1,5 +1,11 @@
 export default [
   {
+    "date": "01/08/2025",
+    "changes": [
+      "Added custom spine model upload (+ icon in the navbar)"
+    ]
+  },
+  {
     "date": "31/07/2025",
     "changes": [
       "Renamed 'Kelian: Apostle' to 'Olivier: Apostle (Kelian)'.",
