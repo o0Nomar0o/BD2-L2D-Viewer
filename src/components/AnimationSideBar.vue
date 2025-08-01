@@ -22,12 +22,12 @@
       </div>
     </div>
     <div class="md:mt-auto flex flex-col">
-      <div class="p-2">
+      <div v-if="!currentChar?.customFiles" class="p-2">
         <span>Animation Category</span>
         <select v-model="store.animationCategory" class="bg-gray-700 text-white w-full">
           <option value="character">Character</option>
-          <option value="ultimate" :disabled="!charHasUltAnimation">Ultimate</option>
-          <option value="dating" :disabled="!charHasDatingAnimation">Fated Guest</option>
+          <option value="ultimate" :disabled="!currentChar?.cutscene">Ultimate</option>
+          <option value="dating" :disabled="!currentChar?.dating">Fated Guest</option>
         </select>
       </div>
       <div class="p-2">
@@ -141,12 +141,7 @@ function onExport() {
 
 const selectedAnimation = computed(() => store.selectedAnimation)
 const toggleLabel = computed(() => (store.playing ? 'Pause' : 'Play'))
-const charHasUltAnimation = computed(() =>
-  store.characters.find(c => c.id === store.selectedCharacterId)?.cutscene
-)
-const charHasDatingAnimation = computed(() =>
-  store.characters.find(c => c.id === store.selectedCharacterId)?.dating
-)
+const currentChar = computed(() => store.characters.find(c => c.id === store.selectedCharacterId))
 
 watch(() => store.animationCategory, () => {
   emit('category-change');

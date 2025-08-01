@@ -9,7 +9,12 @@ export interface Character {
   spine: string
   cutscene: string
   dating: string
-  datingHasNoBg?: boolean
+  datingHasNoBg?: boolean,
+  customFiles?: {
+    skel: string,
+    atlas: string,
+    images: Record<string, string>
+  }
 }
 
 const characterArray: Character[] = Object.entries(character_list).map(([id, char]) => ({

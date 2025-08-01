@@ -62,6 +62,11 @@ async function load() {
 
   const assetRoot = import.meta.env.DEV ? 'src/assets/spines' : 'assets/spines'
   const path = `${assetRoot}/${char.id}/${ANIMATION_TYPE_BASE_PATH[store.animationCategory]}`
+
+  const binaryUrl = char.customFiles?.skel || `${path}.skel`
+  const atlasUrl = char.customFiles?.atlas || `${path}.atlas`
+  const rawDataURIs = char.customFiles?.images
+
   offset = new Vector2()
   size = new Vector2()
 
@@ -81,8 +86,9 @@ async function load() {
 
   player = new SpinePlayer(container.value, {
     showControls: false,
-    binaryUrl: `${path}.skel`,
-    atlasUrl: `${path}.atlas`,
+    binaryUrl,
+    atlasUrl,
+    rawDataURIs,
     backgroundColor: store.backgroundColor,
     preserveDrawingBuffer: true,
     premultipliedAlpha: true,
