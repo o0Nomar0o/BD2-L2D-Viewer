@@ -1,8 +1,14 @@
 export default [
   {
+    "date": "04/08/2025",
+    "changes": [
+      "Added json skeleton file support in custom spine model upload."
+    ]
+  },
+  {
     "date": "01/08/2025",
     "changes": [
-      "Added custom spine model upload (+ icon in the navbar)"
+      "Added custom spine model upload (+ icon in the navbar)."
     ]
   },
   {

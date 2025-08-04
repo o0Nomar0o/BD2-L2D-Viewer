@@ -7,7 +7,7 @@
       <button class="absolute top-2 right-3 cursor-pointer" @click="$emit('close')">✕</button>
       <h2 class="text-lg font-bold mb-2">Upload Spine Files</h2>
       <p class="mb-2">
-        Select your <strong>.atlas</strong>, <strong>.skel</strong> and related <strong>.png</strong> files.
+        Select your <strong>.atlas</strong>, <strong>.skel</strong> or <strong>.json</strong> and related <strong>.png</strong> files.
         Only Spine 4.1 files are supported.
       </p>
       <input
@@ -25,7 +25,7 @@
           ref="fileInput"
           type="file"
           multiple
-          accept=".skel,.atlas,.png"
+          accept=".skel,.json,.atlas,.png"
           class="hidden"
           @change="onFiles"
         />
@@ -84,10 +84,11 @@ function process() {
     return
   }
   const atlas = files.value.find(f => f.name.toLowerCase().endsWith('.atlas'))
+  const json = files.value.find(f => f.name.toLowerCase().endsWith('.json'))
   const skel = files.value.find(f => f.name.toLowerCase().endsWith('.skel'))
   const textures = files.value.filter(f => f.name.toLowerCase().endsWith('.png'))
-  if (!atlas || !skel) {
-    message.value = 'Atlas and skeleton files are missing.'
+  if (!atlas || (!skel && !json)) {
+    message.value = 'Atlas and/or skeleton files are missing.'
     return
   }
   loading.value = true
@@ -103,12 +104,14 @@ function process() {
         loading.value = false
         return
       }
-      const skelUrl = URL.createObjectURL(skel)
+      const skelUrl = skel ? URL.createObjectURL(skel) : undefined
+      const jsonUrl = json ? URL.createObjectURL(json) : undefined
       const atlasUrl = URL.createObjectURL(atlas)
       const base = atlasUrl.slice(0, atlasUrl.lastIndexOf('/') + 1)
       const images = Object.fromEntries(textures.map(t => [base + t.name, URL.createObjectURL(t)]))
       const customFiles = {
         skel: skelUrl,
+        json: jsonUrl,
         atlas: atlasUrl,
         images,
       }

@@ -64,6 +64,7 @@ async function load() {
   const path = `${assetRoot}/${char.id}/${ANIMATION_TYPE_BASE_PATH[store.animationCategory]}`
 
   const binaryUrl = char.customFiles?.skel || `${path}.skel`
+  const jsonUrl = char.customFiles?.json
   const atlasUrl = char.customFiles?.atlas || `${path}.atlas`
   const rawDataURIs = char.customFiles?.images
 
@@ -86,7 +87,8 @@ async function load() {
 
   player = new SpinePlayer(container.value, {
     showControls: false,
-    binaryUrl,
+    ...((binaryUrl && !jsonUrl) && { binaryUrl }),
+    ...(jsonUrl && { jsonUrl }),
     atlasUrl,
     rawDataURIs,
     backgroundColor: store.backgroundColor,

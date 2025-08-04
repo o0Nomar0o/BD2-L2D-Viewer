@@ -11,7 +11,8 @@ export interface Character {
   dating: string
   datingHasNoBg?: boolean,
   customFiles?: {
-    skel: string,
+    skel?: string,
+    json?: string,
     atlas: string,
     images: Record<string, string>
   }
