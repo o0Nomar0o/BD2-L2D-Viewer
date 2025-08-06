@@ -4,7 +4,7 @@
     <button
       v-show="store.characters.find(c => c.id === store.selectedCharacterId)?.datingHasNoBg && store.animationCategory === 'dating'"
       @click="store.showDatingBg = !store.showDatingBg"
-      class="absolute z-10 left-2 top-2 hidden md:block cursor-pointer"
+      class="absolute z-10 left-2 top-2 hidden lg:block cursor-pointer"
     >
       <BgToggleIcon :active="store.showDatingBg" />
     </button>

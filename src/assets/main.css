@@ -1,5 +1,9 @@
 @import 'tailwindcss';
 
+@theme {
+  --breakpoint-lg: 72rem;
+}
+
 .sidebar-scroll {
   scrollbar-width: thin;
   scrollbar-color: #374151 #1f2937;

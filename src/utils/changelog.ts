@@ -1,5 +1,11 @@
 export default [
   {
+    "date": "06/08/2025",
+    "changes": [
+      "Adjusted viewport breakpoints for better experience on tablets and small laptops."
+    ]
+  },
+  {
     "date": "04/08/2025",
     "changes": [
       "Added json skeleton file support in custom spine model upload."

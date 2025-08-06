@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full md:w-64 md:h-full bg-gray-800 text-white flex flex-col min-h-0">
-    <div class="flex-1 min-h-0 px-2 hidden md:flex flex-col gap-2">
+  <div class="w-full lg:w-64 lg:h-full bg-gray-800 text-white flex flex-col min-h-0">
+    <div class="flex-1 min-h-0 px-2 hidden lg:flex flex-col gap-2">
       <span class="pt-2">Skins</span>
       <select
         v-model="store.selectedSkin"
@@ -21,7 +21,7 @@
         </div>
       </div>
     </div>
-    <div class="md:mt-auto flex flex-col">
+    <div class="lg:mt-auto flex flex-col">
       <div v-if="!currentChar?.customFiles" class="p-2">
         <span>Animation Category</span>
         <select v-model="store.animationCategory" class="bg-gray-700 text-white w-full">
@@ -44,7 +44,7 @@
           <span class="w-12 text-right">{{ store.animationSpeed.toFixed(2) }}x</span>
         </div>
       </div>
-      <div class="p-2 gap-2 hidden md:flex">
+      <div class="p-2 gap-2 hidden lg:flex">
         <button
           class="bg-gray-600 hover:bg-gray-500 text-white rounded shadow transition px-4 py-2"
           @click="emit('reset-camera')"

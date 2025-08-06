@@ -1,8 +1,8 @@
 <template>
   <div class="bg-gray-900 text-white h-dvh max-h-dvh flex flex-col">
     <Navbar />
-    <div class="flex flex-1 flex-col md:flex-row h-full min-h-0 overflow-hidden">
-      <div class="order-1 md:order-none hidden md:flex flex-col min-h-0">
+    <div class="flex flex-1 flex-col lg:flex-row h-full min-h-0 overflow-hidden">
+      <div class="order-1 lg:order-none hidden lg:flex flex-col min-h-0">
         <AnimationSidebar
           :animations="animations"
           :skins="skins"
@@ -13,11 +13,11 @@
           @screenshot="onScreenshot"
           @export-animation="onExportAnimation"
           @category-change="onCategoryChange"
-          class="md:w-64"
+          class="lg:w-64"
         />
       </div>
       <main class="relative flex-1 p-2 overflow-hidden">
-        <div class="absolute top-2 left-2 md:hidden z-10 flex items-center gap-2">
+        <div class="absolute top-2 left-2 lg:hidden z-10 flex items-center gap-2">
           <button class="p-2" @click="showMobileControls = true">
             <MenuIcon />
           </button>
@@ -47,7 +47,7 @@
             <option v-for="name in animations" :key="name" :value="name">{{ name }}</option>
           </select>
         </div>
-        <div class="absolute top-14 left-4 md:hidden z-10">
+        <div class="absolute top-14 left-4 lg:hidden z-10">
           <button
             v-show="!showMobileControls && store.characters.find(c => c.id === store.selectedCharacterId)?.datingHasNoBg && store.animationCategory === 'dating'"
             @click="store.showDatingBg = !store.showDatingBg"
@@ -57,16 +57,16 @@
         </div>
         <SpineViewer ref="viewerRef" @animations="animations = $event" @skins="skins = $event" />
       </main>
-      <div class="hidden md:flex flex-col min-h-0">
+      <div class="hidden lg:flex flex-col min-h-0">
         <CharacterSidebar
           @select="onSelectCharacter"
-          class="md:w-80"
+          class="lg:w-80"
         />
       </div>
     </div>
     <div
       v-if="showMobileControls"
-      class="fixed inset-0 z-20 bg-gray-900 md:hidden flex flex-col"
+      class="fixed inset-0 z-20 bg-gray-900 lg:hidden flex flex-col"
     >
       <button
         class="absolute top-3 right-4"
