@@ -5,6 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "tauri": "tauri",
+    "tauri:dev": "tauri dev",
+    "tauri:build": "tauri build",
     "build": "run-s build-main copy-spines",
     "build-main": "run-p type-check \"build-only {@}\" --",
     "copy-spines": "node scripts/copy-spines.js",
@@ -15,14 +18,17 @@
   },
   "dependencies": {
     "@esotericsoftware/spine-player": "4.1.55",
+    "@motionone/vue": "^10.16.4",
     "@tailwindcss/vite": "^4.1.10",
+    "@tauri-apps/api": "^2.7.0",
+    "@tauri-apps/cli": "^2.7.1",
     "pinia": "^3.0.1",
     "tailwindcss": "^4.1.10",
     "vue": "^3.5.13"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.1",
-    "@types/node": "^22.14.0",
+    "@types/node": "^22.17.1",
     "@vitejs/plugin-vue": "^5.2.3",
     "@vue/eslint-config-typescript": "^14.5.0",
     "@vue/tsconfig": "^0.7.0",

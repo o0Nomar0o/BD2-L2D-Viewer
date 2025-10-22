@@ -5,17 +5,11 @@
   >
     <div class="relative bg-gray-900 p-4 rounded w-full max-w-lg">
       <button class="absolute top-2 right-3 cursor-pointer" @click="$emit('close')">✕</button>
-      <h2 class="text-lg font-bold mb-2">Upload Spine Files</h2>
+      <h2 class="text-lg font-bold mb-2">Upload Spine Folder</h2>
       <p class="mb-2">
-        Select your <strong>.atlas</strong>, <strong>.skel</strong> or <strong>.json</strong> and related <strong>.png</strong> files.
-        Only Spine 4.1 files are supported.
+        Select a folder that contains your <strong>.atlas</strong>, <strong>.skel</strong> or <strong>.json</strong>, and related <strong>.png</strong> files (Spine 4.1).
+        The character name will be taken from the folder name.
       </p>
-      <input
-        v-model="name"
-        type="text"
-        placeholder="Character name"
-        class="bg-gray-700 text-white p-2 w-full mb-2 outline-none"
-      />
       <div
         class="border-2 border-dashed rounded p-4 text-center mb-2"
         @dragover.prevent
@@ -24,14 +18,14 @@
         <input
           ref="fileInput"
           type="file"
-          multiple
-          accept=".skel,.json,.atlas,.png"
+          webkitdirectory
+          directory
           class="hidden"
           @change="onFiles"
         />
         <p class="mb-2">
-          Drag files here or
-          <span class="text-blue-400 underline cursor-pointer" @click="fileInput?.click()">choose files</span>
+          Drag a folder here or
+          <span class="text-blue-400 underline cursor-pointer" @click="fileInput?.click()">choose folder</span>
         </p>
         <div v-if="fileNames.length" class="text-sm break-words">{{ fileNames.join(', ') }}</div>
       </div>
@@ -40,7 +34,7 @@
         <button
           class="bg-gray-600 hover:bg-gray-500 text-white rounded px-4 py-2"
           @click="process"
-          :disabled="loading"
+          :disabled="loading || !files.length"
         >
           <LoadingIcon v-if="loading" />
           <span v-else>Upload</span>
@@ -56,11 +50,11 @@ import { useCharacterStore } from '@/stores/characterStore'
 
 import LoadingIcon from '@/components/icons/LoadingIcon.vue'
 
+const emit = defineEmits(['close'])
 const store = useCharacterStore()
 
 const fileInput = ref<HTMLInputElement | null>(null)
 const files = ref<File[]>([])
-const name = ref('')
 const message = ref('')
 const success = ref(false)
 const loading = ref(false)
@@ -69,20 +63,45 @@ const fileNames = computed(() => files.value.map(f => f.name))
 const msgClass = computed(() => (success.value ? 'text-green-400' : 'text-red-400'))
 
 function onFiles(e: Event) {
-  files.value = Array.from((e.target as HTMLInputElement).files || [])
+  const list = Array.from((e.target as HTMLInputElement).files || [])
+  files.value = list
 }
 
 function onDrop(e: DragEvent) {
-  files.value = Array.from(e.dataTransfer?.files || [])
+  const list = Array.from(e.dataTransfer?.files || [])
+  files.value = list
+}
+
+function getFolderName(): string | undefined {
+  if (!files.value.length) return undefined
+  // Prefer folder from webkitRelativePath when available
+  const withRel = files.value.find(f => (f as any).webkitRelativePath && (f as any).webkitRelativePath.includes('/'))
+  if (withRel) {
+    const rel = String((withRel as any).webkitRelativePath)
+    const top = rel.split('/')[0]
+    if (top) return top
+  }
+  // Fallback: use base name (without extension) from atlas or first file
+  const atlas = files.value.find(f => f.name.toLowerCase().endsWith('.atlas'))
+  const baseFrom = (atlas ?? files.value[0]).name
+  const dot = baseFrom.lastIndexOf('.')
+  return dot > 0 ? baseFrom.slice(0, dot) : baseFrom
 }
 
 function process() {
   message.value = ''
   success.value = false
-  if (!name.value.trim()) {
-    message.value = 'Enter a name.'
+  if (!files.value.length) {
+    message.value = 'Please select a folder.'
     return
   }
+
+  const folderName = getFolderName()
+  if (!folderName) {
+    message.value = 'Could not determine folder name.'
+    return
+  }
+
   const atlas = files.value.find(f => f.name.toLowerCase().endsWith('.atlas'))
   const json = files.value.find(f => f.name.toLowerCase().endsWith('.json'))
   const skel = files.value.find(f => f.name.toLowerCase().endsWith('.skel'))
@@ -91,6 +110,7 @@ function process() {
     message.value = 'Atlas and/or skeleton files are missing.'
     return
   }
+
   loading.value = true
   const reader = new FileReader()
   reader.onload = () => {
@@ -117,7 +137,7 @@ function process() {
       }
       const char = {
         id: `custom-${Date.now()}`,
-        charName: name.value.trim(),
+        charName: folderName,
         costumeName: 'Custom',
         spine: '',
         cutscene: '',
@@ -128,8 +148,9 @@ function process() {
       store.characters.unshift(char)
       store.selectedCharacterId = char.id
       success.value = true
-      message.value = 'Upload successfull.'
+      message.value = 'Upload successful.'
       loading.value = false
+      emit('close')
     } catch (err) {
       message.value = `Unexpected error: ${(err as Error).message}`
       loading.value = false

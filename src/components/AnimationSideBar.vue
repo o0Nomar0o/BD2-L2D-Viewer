@@ -1,20 +1,20 @@
 <template>
-  <div class="w-full lg:w-64 lg:h-full bg-gray-800 text-white flex flex-col min-h-0">
+  <div class="w-full lg:w-64 lg:h-full bg-slate-900 text-white flex flex-col min-h-0">
     <div class="flex-1 min-h-0 px-2 hidden lg:flex flex-col gap-2">
-      <span class="pt-2">Skins</span>
+      <!-- <span class="pt-2">Skins</span>
       <select
         v-model="store.selectedSkin"
-        class="bg-gray-700 text-white"
+        class="bg-slate-800 text-white"
       >
         <option v-for="skin in skins" :key="skin" :value="skin">{{ skin }}</option>
       </select>
-      <span>Animations</span>
+      <span>Animations</span> -->
       <div class="overflow-y-auto sidebar-scroll flex-1">
         <div
           v-for="name in animations"
           :key="name"
           class="py-2 pl-2 cursor-pointer"
-          :class="{ 'bg-gray-700': name === selectedAnimation }"
+          :class="{ 'bg-slate-800': name === selectedAnimation }"
           @click="select(name)"
         >
           {{ name }}
@@ -24,7 +24,7 @@
     <div class="lg:mt-auto flex flex-col">
       <div v-if="!currentChar?.customFiles" class="p-2">
         <span>Animation Category</span>
-        <select v-model="store.animationCategory" class="bg-gray-700 text-white w-full">
+        <select v-model="store.animationCategory" class="bg-slate-800 text-white w-full">
           <option value="character">Character</option>
           <option value="ultimate" :disabled="!currentChar?.cutscene">Ultimate</option>
           <option value="dating" :disabled="!currentChar?.dating">Fated Guest</option>
@@ -46,7 +46,7 @@
       </div>
       <div class="p-2 gap-2 hidden lg:flex">
         <button
-          class="bg-gray-600 hover:bg-gray-500 text-white rounded shadow transition px-4 py-2"
+          class="bg-slate-700 hover:bg-slate-600 text-white rounded shadow transition px-4 py-2"
           @click="emit('reset-camera')"
         >
           Reset View
@@ -60,7 +60,7 @@
       </div>
       <div class="p-2 flex">
         <button
-          class="flex-1 bg-gray-600 hover:bg-gray-500 text-white rounded shadow transition px-4 py-2"
+          class="flex-1 bg-slate-700 hover:bg-slate-600 text-white rounded shadow transition px-4 py-2"
           @click="colorInput?.click()"
         >
           BG Color
@@ -74,7 +74,7 @@
       </div>
       <div class="p-2 flex gap-2 items-center">
         <button
-          class="flex-1 bg-gray-600 hover:bg-gray-500 text-white rounded shadow transition px-4 py-2"
+          class="flex-1 bg-slate-700 hover:bg-slate-600 text-white rounded shadow transition px-4 py-2"
           @click="onScreenshot"
           :disabled="screenshotting"
         >
@@ -88,7 +88,7 @@
       </div>
       <div class="p-2 hidden md:flex">
         <button
-          class="flex-1 bg-gray-600 hover:bg-gray-500 text-white rounded shadow transition px-4 py-2"
+          class="flex-1 bg-slate-700 hover:bg-slate-600 text-white rounded shadow transition px-4 py-2"
           @click="onExport"
           :disabled="exporting"
         >

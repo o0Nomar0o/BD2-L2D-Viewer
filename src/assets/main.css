@@ -4,6 +4,14 @@
   --breakpoint-lg: 72rem;
 }
 
+/* Make the whole app unselectable */
+* {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
 .sidebar-scroll {
   scrollbar-width: thin;
   scrollbar-color: #374151 #1f2937;
@@ -20,4 +28,8 @@
 .sidebar-scroll::-webkit-scrollbar-thumb {
   background: #374151;
   border-radius: 4px;
+}
+
+body{
+  overflow: hidden;
 }
